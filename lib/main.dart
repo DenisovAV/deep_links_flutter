@@ -24,7 +24,7 @@ class PocApp extends StatelessWidget {
             )),
         home: Scaffold(
             body: Provider<DeepLinkBloc>(
-                builder: (context) => _bloc,
+                create: (context) => _bloc,
                 dispose: (context, bloc) => bloc.dispose(),
                 child: PocWidget())));
   }

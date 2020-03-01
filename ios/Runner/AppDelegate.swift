@@ -15,8 +15,8 @@ import Flutter
   ) -> Bool {
     
     let controller = window.rootViewController as! FlutterViewController
-    methodChannel = FlutterMethodChannel(name: "poc.deeplink.flutter.dev/cnannel", binaryMessenger: controller)
-    eventChannel = FlutterEventChannel(name: "poc.deeplink.flutter.dev/events", binaryMessenger: controller)
+    methodChannel = FlutterMethodChannel(name: "poc.deeplink.flutter.dev/cnannel", binaryMessenger: controller.binaryMessenger)
+    eventChannel = FlutterEventChannel(name: "poc.deeplink.flutter.dev/events", binaryMessenger: controller.binaryMessenger)
 
     
     methodChannel?.setMethodCallHandler({ (call: FlutterMethodCall, result: FlutterResult) in
