@@ -12,7 +12,7 @@ class DeepLinkBloc extends Bloc {
   static const stream = const EventChannel('poc.deeplink.flutter.dev/events');
 
   //Method channel creation
-  static const platform = const MethodChannel('poc.deeplink.flutter.dev/cnannel');
+  static const platform = const MethodChannel('poc.deeplink.flutter.dev/channel');
 
   StreamController<String> _stateController = StreamController();
 
