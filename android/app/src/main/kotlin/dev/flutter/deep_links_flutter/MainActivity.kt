@@ -19,18 +19,6 @@ class MainActivity: FlutterActivity() {
     private var startString: String? = null
     private var linksReceiver: BroadcastReceiver? = null
 
-    fun createChangeReceiver(events: EventSink): BroadcastReceiver? {
-        return object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) { // NOTE: assuming intent.getAction() is Intent.ACTION_VIEW
-                val dataString = intent.dataString ?:
-                    events.error("UNAVAILABLE", "Link unavailable", null)
-                events.success(dataString)
-            }
-        }
-    }
-
-
-
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
 
@@ -59,10 +47,7 @@ class MainActivity: FlutterActivity() {
         super.onCreate(savedInstanceState)
 
         val intent = getIntent()
-        val data = intent.data
-
-        startString = data?.toString()
-        linksReceiver?.onReceive(this.applicationContext, intent)
+        startString = intent.data?.toString()
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -71,5 +56,16 @@ class MainActivity: FlutterActivity() {
             linksReceiver?.onReceive(this.applicationContext, intent)
         }
     }
+
+    fun createChangeReceiver(events: EventSink): BroadcastReceiver? {
+        return object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) { // NOTE: assuming intent.getAction() is Intent.ACTION_VIEW
+                val dataString = intent.dataString ?:
+                events.error("UNAVAILABLE", "Link unavailable", null)
+                events.success(dataString)
+            }
+        }
+    }
+
 }
 
