@@ -12,11 +12,11 @@ class PocApp extends StatelessWidget {
   Widget build(BuildContext context) {
     DeepLinkBloc _bloc = DeepLinkBloc();
     return MaterialApp(
-        title: 'Flutter and Deep Linsk PoC',
+        title: 'Flutter and Deep Links PoC',
         theme: ThemeData(
             primarySwatch: Colors.blue,
             textTheme: TextTheme(
-              title: TextStyle(
+              subtitle1: TextStyle(
                 fontWeight: FontWeight.w300,
                 color: Colors.blue,
                 fontSize: 25.0,

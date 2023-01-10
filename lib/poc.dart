@@ -14,14 +14,14 @@ class PocWidget extends StatelessWidget {
           return Container(
               child: Center(
                   child: Text('No deep link was used  ',
-                      style: Theme.of(context).textTheme.title)));
+                      style: Theme.of(context).textTheme.subtitle1)));
         } else {
           return Container(
               child: Center(
                   child: Padding(
                       padding: EdgeInsets.all(20.0),
                       child: Text('Redirected: ${snapshot.data}',
-                          style: Theme.of(context).textTheme.title))));
+                          style: Theme.of(context).textTheme.subtitle1))));
         }
       },
     );

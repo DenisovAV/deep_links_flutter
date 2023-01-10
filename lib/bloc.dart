@@ -7,7 +7,6 @@ abstract class Bloc {
 }
 
 class DeepLinkBloc extends Bloc {
-
   //Event Channel creation
   static const stream = const EventChannel('poc.deeplink.flutter.dev/events');
 
@@ -20,7 +19,6 @@ class DeepLinkBloc extends Bloc {
 
   Sink<String> get stateSink => _stateController.sink;
 
-
   //Adding the listener into contructor
   DeepLinkBloc() {
     //Checking application start by deep link
@@ -29,21 +27,20 @@ class DeepLinkBloc extends Bloc {
     stream.receiveBroadcastStream().listen((d) => _onRedirected(d));
   }
 
-
-  _onRedirected(String uri) {
+  void _onRedirected(String? uri) {
     // Here can be any uri analysis, checking tokens etc, if it’s necessary
     // Throw deep link URI into the BloC's stream
-    stateSink.add(uri);
+    if (uri != null) {
+      stateSink.add(uri);
+    }
   }
-
 
   @override
   void dispose() {
     _stateController.close();
   }
 
-
-  Future<String> startUri() async {
+  Future<String?> startUri() async {
     try {
       return platform.invokeMethod('initialLink');
     } on PlatformException catch (e) {
